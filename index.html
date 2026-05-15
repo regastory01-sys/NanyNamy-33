@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NANY & NAMY | A Dream That Never Ended</title>
+    <style>
+        /* Шрифты (минимализм и современность) */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500&display=swap');
+
+        :root {
+            --nany-red: #cc0000;
+            --namy-yellow: #f1c40f;
+            --bg-color: #121212; /* Чуть светлее черного для начала */
+            --text-color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            line-height: 1.8;
+            /* Включаем медленный плавный скролл встроенными средствами CSS */
+            scroll-behavior: smooth;
+        }
+
+        /* Эффект шума/зерна (очень слабый, как заказывали) */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Grain_Noise.png');
+            opacity: 0.03; /* Едва заметно */
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* Основной контейнер, которому JS будет менять фон */
+        .scroll-wrapper {
+            transition: background-color 1.5s ease; /* Очень медленный переход цвета */
+        }
+
+        /* Общие стили для всех секций (много свободного пространства) */
+        section {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 40px; /* Большие отступы */
+            position: relative;
+        }
+
+        /* Блоки истории */
+        .story-block {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            /* Чтобы текст не был слишком ярким сразу, делаем его чуть тусклым */
+            opacity: 0.7;
+            transition: opacity 0.5s ease;
+        }
+
+        /* При наведении текст становится ярче — простой интерактивный эффект */
+        .story-block:hover {
+            opacity: 1;
+        }
+
+        /* === Главный экран === */
+        .hero {
+            flex-direction: column; /* Теперь заголовок и подзаголовок будут друг под другом */
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 100;
+            letter-spacing: 1.5rem;
+            margin-bottom: 20px;
+            display: block; /* Занимает всю ширину */
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            opacity: 0.5;
+            letter-spacing: 0.3rem;
+            margin-bottom: 100px; /* Отступ до подсказки */
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            opacity: 0.3;
+            text-transform: uppercase;
+        }
+
+        /* === Стили текста === */
+        h2 {
+            font-weight: 300;
+            margin-bottom: 40px;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        /* Акценты */
+        .nany { color: var(--nany-red); text-shadow: 0 0 15px rgba(220, 0, 0, 0.4); font-weight: 400;}
+        .namy { color: var(--namy-yellow); text-shadow: 0 0 15px rgba(241, 196, 15, 0.3); font-weight: 400;}
+        .quote { font-style: italic; opacity: 0.9; }
+
+        /* === Финал === */
+        .final-screen h2.final-title {
+            font-size: 3rem;
+            letter-spacing: 0.5rem;
+            margin-bottom: 10px;
+            font-weight: 100;
+            text-transform: none;
+            opacity: 1;
+        }
+
+        .final-sub {
+            font-size: 0.8rem;
+            opacity: 0.4;
+            margin-bottom: 40px;
+        }
+
+        .epilogue {
+            font-size: 1rem;
+            opacity: 0.6;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; letter-spacing: 0.5rem; }
+            p { font-size: 1.2rem; }
+            section { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-wrapper" id="mainWrapper">
+        
+        <section class="hero">
+            <h1>NANY & NAMY</h1>
+            <p class="subtitle">A dream that never ended.</p>
+            <div class="scroll-hint">Scroll down to read</div>
+        </section>
+
+       <section>
+            <div class="story-block">
+                <p>Все начинается с того, что девочка находит странную куклу с алыми волосами — <span class="nany">Nany</span>.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Она появляется будто случайно: на лавочке, в магазине или среди забытых вещей.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Девочка забирает её домой, а спустя время начинает замечать странности: волосы куклы становятся длиннее, а по ночам рядом с ней появляется ощущение чужого присутствия.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>В одну из ночей <span class="nany">Nany</span> забирает её сознание в другое место — Саркофаг.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Сначала Саркофаг кажется сном.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Это тихий мир с мягким светом, бесконечными комнатами, пустыми улицами и странным чувством покоя.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Пространство постоянно меняется: однажды это уютные коридоры, в другой раз — огромный лабиринт с высокими потолками, пустое село внутри гигантских стен или бесконечные бетонные улицы под искусственным небом.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Но всё выглядит блекло и нереально, будто сон, который медленно теряет цвета.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Там девочка встречает <span class="namy">Namy</span> — другую девочку, попавшую сюда через такую же куклу с жёлтыми волосами.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Время в Саркофаге течёт иначе.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Одна ночь в реальности превращается в несколько дней а то и недель внутри.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Каждую ночь девочки снова оказываются вместе в этом мире, всё дальше от обычной жизни.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Они разговаривают, исследуют Саркофаг, делятся страхами и постепенно становятся друг другу ближе, чем кто-либо когда-либо был.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>В этой изоляции они начинают ощущать себя почти одним человеком — словно двумя частями одной души.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Но после пика их близости Саркофаг начинает меняться.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Мир становится тише, цвета бледнеют, пространства делаются слишком большими и пустыми, а комнаты начинают повторяться.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Иногда девочки часами сидят молча, потому что больше не знают, о чём говорить.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Они всё ещё любят друг друга как сёстры, но постоянное нахождение рядом начинает медленно ломать их психику.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Раздражение, усталость и страх становятся частью каждой новой ночи.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>И тогда куклы впервые подают голос.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Они говорят, что девочки разделили одну душу и что Саркофаг больше не может удерживать их вместе.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Куклы дают им выбор: если они переживут ещё 33 ночи вместе, то обе смогут навсегда покинуть Саркофаг и вернуться к нормальной жизни.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Но есть и другой путь — если одна из них убьёт другую в реальном мире, умершая «уйдёт с миром», навсегда освободившись от Саркофага, а вторая продолжит жить дальше.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p><span class="namy">Namy</span> отказывается даже думать об убийстве. Она верит, что они смогут выдержать 33 ночи вместе.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Но чем больше проходит времени, тем тяжелее становится Саркофаг. Мир вокруг будто умирает вместе с ними.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Тишина затягивается, разговоры заканчиваются, а между девочками появляется скрытое напряжение.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p><span class="nany">Nany</span> начинает видеть, как <span class="namy">Namy</span> устает, как меняется её голос, и больше всего её пугает мысль о том, что однажды они начнут ненавидеть друг друга.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Постепенно мысль об убийстве перестаёт казаться ей чудовищной.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Она начинает видеть в этом милосердие — способ прекратить страдания для них обеих и сохранить их связь, пока она ещё не разрушилась окончательно.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>В конце концов <span class="nany">Nany</span> принимает решение.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Она убивает <span class="namy">Namy</span> в реальном мире, искренне веря, что дарит своей «сестре» покой.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p><span class="nany">Nany</span> просыпается.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                 <p>Саркофаг исчезает из её жизни. Время идёт дальше, она взрослеет, живёт обычной жизнью и до самого конца верит, что когда-то спасла свою лучшую подругу от страданий.</p>
+            </div>
+        </section>
+
+         <section>
+            <div class="story-block">
+                <p>Но куклы солгали.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Саркофаг действительно не может удерживать их вместе — только одну.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>После смерти <span class="namy">Namy</span> открывает глаза в Саркофаге снова.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+               <p>Сначала она ждёт пробуждения, потом ещё немного, но мир вокруг лишь становится темнее.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="story-block">
+                <p>Цвета исчезают окончательно, превращаясь в холодный красно-серый шум, пространство пустеет, а тишина становится бесконечной.</p>
+            </div>
+        </section>
+
+         <section>
+            <div class="story-block">
+                <p><span class="namy">Namy</span> понимает, что её не отпустили. Её оставили одну.</p>
+            </div>
+        </section>
+        
+        <section>
+            <div class="story-block">
+                <p>Навсегда.</p>
+            </div>
+        </section>
+
+          <section>
+            <div class="story-block">
+                <p>Без возможности умереть, без сна и без выхода.</p>
+            </div>
+        </section>  
+
+         <section>
+            <div class="story-block">
+                <p>Только бесконечный Саркофаг, медленно теряющий форму, и одиночество, которое со временем превращает <span class="namy">Namy</span> во что-то сломанное и нечеловеческое — белое существо с пустыми чёрными глазами, застывшее в вечном беззвучном крике.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Всего одна простая функция для изменения фона
+        window.addEventListener('scroll', () => {
+            const html = document.documentElement;
+            const wrapper = document.getElementById('mainWrapper');
+            
+            // Расширенная математика для расчета процента прокрутки
+            const scrollTop = html.scrollTop;
+            const scrollHeight = html.scrollHeight - html.clientHeight;
+            
+            if (scrollHeight === 0) return; // Защита от деления на ноль
+
+            const scrollPercent = scrollTop / scrollHeight;
+            
+            // От исходного rgb(18, 18, 18) к черному, а в конце — к глубокому красному
+            if (scrollPercent < 0.2) {
+                // Постепенно затемняем от 18 до 0
+                const darkValue = Math.max(0, Math.floor(18 * (0.2 - (scrollPercent / 0.2)))); // 18 to 0
+                wrapper.style.backgroundColor = `rgb(${darkValue}, ${darkValue}, ${darkValue})`;
+            } else {
+                // Финальная стадия: переход от черного к темно-красному
+                const redTransitionPercent = (scrollPercent - 0.7) / 0.3; // 0 to 1
+                const r = Math.floor(redTransitionPercent * 40); // Максимум 40 (очень темный красный)
+                wrapper.style.backgroundColor = `rgb(${r}, 0, 0)`;
+            }
+        });
+    </script>
+</body>
+</html>
